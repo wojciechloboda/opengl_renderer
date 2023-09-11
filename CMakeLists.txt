@@ -12,7 +12,11 @@ add_subdirectory(extern/glfw)
 add_subdirectory(extern/glad)
 
 target_link_libraries(opengl_renderer glfw opengl32 glad)
-target_include_directories(opengl_renderer PUBLIC extern/glfw/include extern/glad/include)
+target_include_directories(opengl_renderer PUBLIC extern/glfw/include
+                                                  extern/glad/include
+                                                  extern/vmath/include
+                                                  extern/stb
+                                                  extern/obj)
 
 set_target_properties(opengl_renderer PROPERTIES RUNTIME_OUTPUT_DIRECTORY bin)
 
