@@ -212,6 +212,19 @@ update_mappings/fast:
 	$(MAKE) $(MAKESILENT) -f extern\glfw\src\CMakeFiles\update_mappings.dir\build.make extern/glfw/src/CMakeFiles/update_mappings.dir/build
 .PHONY : update_mappings/fast
 
+#=============================================================================
+# Target rules for targets named glad
+
+# Build rule for target.
+glad: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 glad
+.PHONY : glad
+
+# fast build rule for target.
+glad/fast:
+	$(MAKE) $(MAKESILENT) -f extern\glad\CMakeFiles\glad.dir\build.make extern/glad/CMakeFiles/glad.dir/build
+.PHONY : glad/fast
+
 src/opengl_renderer.obj: src/opengl_renderer.cpp.obj
 .PHONY : src/opengl_renderer.obj
 
@@ -250,6 +263,7 @@ help:
 	@echo ... rebuild_cache
 	@echo ... uninstall
 	@echo ... update_mappings
+	@echo ... glad
 	@echo ... glfw
 	@echo ... opengl_renderer
 	@echo ... src/opengl_renderer.obj

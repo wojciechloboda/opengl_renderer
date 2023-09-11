@@ -9,8 +9,10 @@ set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
 add_subdirectory(extern/glfw)
-target_link_libraries(opengl_renderer glfw)
-target_include_directories(opengl_renderer PUBLIC extern/glfw/include)
+add_subdirectory(extern/glad)
+
+target_link_libraries(opengl_renderer glfw opengl32 glad)
+target_include_directories(opengl_renderer PUBLIC extern/glfw/include extern/glad/include)
 
 
 

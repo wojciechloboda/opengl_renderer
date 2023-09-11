@@ -136,4 +136,7 @@ CMakeFiles/opengl_renderer.dir/src/opengl_renderer.cpp.obj: \
  c:\mingw64\include\c++\12.1.0\bits\basic_ios.tcc \
  c:\mingw64\include\c++\12.1.0\bits\ostream.tcc \
  c:\mingw64\include\c++\12.1.0\istream \
- c:\mingw64\include\c++\12.1.0\bits\istream.tcc
+ c:\mingw64\include\c++\12.1.0\bits\istream.tcc \
+ C:/Users/lobod/opengl_renderer/extern/glad/include/glad/glad.h \
+ C:/Users/lobod/opengl_renderer/extern/glad/include/KHR/khrplatform.h \
+ C:/Users/lobod/opengl_renderer/extern/glfw/include/GLFW/glfw3.h

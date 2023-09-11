@@ -93,6 +93,7 @@ opengl_renderer_EXTERNAL_OBJECTS =
 opengl_renderer.exe: CMakeFiles/opengl_renderer.dir/src/opengl_renderer.cpp.obj
 opengl_renderer.exe: CMakeFiles/opengl_renderer.dir/build.make
 opengl_renderer.exe: extern/glfw/src/libglfw3.a
+opengl_renderer.exe: extern/glad/libglad.a
 opengl_renderer.exe: CMakeFiles/opengl_renderer.dir/linkLibs.rsp
 opengl_renderer.exe: CMakeFiles/opengl_renderer.dir/objects1.rsp
 opengl_renderer.exe: CMakeFiles/opengl_renderer.dir/link.txt

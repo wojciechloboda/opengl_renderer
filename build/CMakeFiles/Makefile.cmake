@@ -45,6 +45,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.26.0-rc6/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.26.0-rc6/CMakeRCCompiler.cmake"
   "CMakeFiles/3.26.0-rc6/CMakeSystem.cmake"
+  "C:/Users/lobod/opengl_renderer/extern/glad/CMakeLists.txt"
   "C:/Users/lobod/opengl_renderer/extern/glfw/CMake/cmake_uninstall.cmake.in"
   "C:/Users/lobod/opengl_renderer/extern/glfw/CMake/glfw3.pc.in"
   "C:/Users/lobod/opengl_renderer/extern/glfw/CMake/glfw3Config.cmake.in"
@@ -67,6 +68,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "extern/glfw/CMakeFiles/CMakeDirectoryInformation.cmake"
   "extern/glfw/src/glfw3.pc"
   "extern/glfw/src/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "extern/glad/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -75,4 +77,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "extern/glfw/CMakeFiles/uninstall.dir/DependInfo.cmake"
   "extern/glfw/src/CMakeFiles/glfw.dir/DependInfo.cmake"
   "extern/glfw/src/CMakeFiles/update_mappings.dir/DependInfo.cmake"
+  "extern/glad/CMakeFiles/glad.dir/DependInfo.cmake"
   )

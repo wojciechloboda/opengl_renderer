@@ -139,7 +139,10 @@ CMakeFiles/opengl_renderer.dir/src/opengl_renderer.cpp.obj: C:/Users/lobod/openg
   C:/mingw64/include/c++/12.1.0/bits/basic_ios.tcc \
   C:/mingw64/include/c++/12.1.0/bits/ostream.tcc \
   C:/mingw64/include/c++/12.1.0/istream \
-  C:/mingw64/include/c++/12.1.0/bits/istream.tcc
+  C:/mingw64/include/c++/12.1.0/bits/istream.tcc \
+  C:/Users/lobod/opengl_renderer/extern/glad/include/glad/glad.h \
+  C:/Users/lobod/opengl_renderer/extern/glad/include/KHR/khrplatform.h \
+  C:/Users/lobod/opengl_renderer/extern/glfw/include/GLFW/glfw3.h
 
 
 C:/mingw64/include/c++/12.1.0/x86_64-w64-mingw32/bits/ctype_inline.h:
@@ -247,6 +250,8 @@ C:/mingw64/include/c++/12.1.0/bits/nested_exception.h:
 C:/mingw64/x86_64-w64-mingw32/include/locale.h:
 
 C:/mingw64/include/c++/12.1.0/bits/char_traits.h:
+
+C:/Users/lobod/opengl_renderer/extern/glfw/include/GLFW/glfw3.h:
 
 C:/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0/include/stdint.h:
 
@@ -419,3 +424,7 @@ C:/mingw64/include/c++/12.1.0/bits/locale_facets.tcc:
 C:/mingw64/include/c++/12.1.0/bits/basic_ios.tcc:
 
 C:/mingw64/include/c++/12.1.0/istream:
+
+C:/Users/lobod/opengl_renderer/extern/glad/include/glad/glad.h:
+
+C:/Users/lobod/opengl_renderer/extern/glad/include/KHR/khrplatform.h:

@@ -20,3 +20,10 @@ C:/Users/lobod/opengl_renderer/build/extern/glfw/src/CMakeFiles/list_install_com
 C:/Users/lobod/opengl_renderer/build/extern/glfw/src/CMakeFiles/install.dir
 C:/Users/lobod/opengl_renderer/build/extern/glfw/src/CMakeFiles/install/local.dir
 C:/Users/lobod/opengl_renderer/build/extern/glfw/src/CMakeFiles/install/strip.dir
+C:/Users/lobod/opengl_renderer/build/extern/glad/CMakeFiles/glad.dir
+C:/Users/lobod/opengl_renderer/build/extern/glad/CMakeFiles/edit_cache.dir
+C:/Users/lobod/opengl_renderer/build/extern/glad/CMakeFiles/rebuild_cache.dir
+C:/Users/lobod/opengl_renderer/build/extern/glad/CMakeFiles/list_install_components.dir
+C:/Users/lobod/opengl_renderer/build/extern/glad/CMakeFiles/install.dir
+C:/Users/lobod/opengl_renderer/build/extern/glad/CMakeFiles/install/local.dir
+C:/Users/lobod/opengl_renderer/build/extern/glad/CMakeFiles/install/strip.dir
