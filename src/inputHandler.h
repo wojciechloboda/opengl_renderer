@@ -1,15 +1,18 @@
 #pragma once
 
+#include <glm/vec3.hpp> // glm::vec3
+#include <glm/vec4.hpp> // glm::vec4
+#include <glm/mat4x4.hpp> // glm::mat4
+#include <glm/ext/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale
+#include <glm/ext/matrix_clip_space.hpp> // glm::perspective
+#include <glm/ext/scalar_constants.hpp> // glm::pi
+
 class InputHandler
 {
 public:
     InputHandler(GLFW::Window &window, Scene &scene)
         : window(window), scene(scene)
     {
-        //window.setFramebufferSizeCallback(InputHandler::framebuffer_size_callback);
-        //window.setCursorPosCallback(InputHandler::mouse_callback);
-        //window.setWindowSizeCallback(InputHandler::window_size_callback);
-
         window.setUserPointer(this);
         setCallbacks();
     }
@@ -44,13 +47,13 @@ public:
             }
             if (window.getKey(GLFW_KEY_A) == GLFW_PRESS)
             {
-                scene.mainCamera.position -= vmath::normalize(
-                    vmath::cross(scene.mainCamera.cameraFront, scene.mainCamera.upDirection)) * cameraSpeed;
+                scene.mainCamera.position -= glm::normalize(
+                    glm::cross(scene.mainCamera.upDirection, scene.mainCamera.cameraFront)) * cameraSpeed;
             }
             if (window.getKey(GLFW_KEY_D) == GLFW_PRESS)
             {
-                scene.mainCamera.position += vmath::normalize(
-                    vmath::cross(scene.mainCamera.cameraFront, scene.mainCamera.upDirection)) * cameraSpeed;
+                scene.mainCamera.position += glm::normalize(
+                    glm::cross(scene.mainCamera.upDirection, scene.mainCamera.cameraFront)) * cameraSpeed;
             }
         }
             
@@ -80,14 +83,10 @@ public:
     static void mouse_callback(GLFWwindow* window, double xpos, double ypos)
     {
         ImGuiIO& io = ImGui::GetIO();
-        //io.AddMousePosEvent(xpos, ypos);
         InputHandler *handler = static_cast<InputHandler*>(glfwGetWindowUserPointer(window));
 
         if (handler->activeInput)
         {
-            //std::cout << "Want capture mouse" << std::endl;
-            //InputHandler *handler = static_cast<InputHandler*>(glfwGetWindowUserPointer(window));
-
             if (handler->firstMouse)
             {
                 handler->lastX = xpos;
@@ -95,8 +94,8 @@ public:
                 handler->firstMouse = false;
             }
         
-            float xoffset = xpos - handler->lastX;
-            float yoffset = handler->lastY - ypos; 
+            float xoffset =  handler->lastX - xpos;
+            float yoffset = ypos - handler->lastY; 
             handler->lastX = xpos;
             handler->lastY = ypos;
 
@@ -112,11 +111,11 @@ public:
             if(handler->pitch < -89.0f)
                 handler->pitch = -89.0f;
 
-            vmath::vec3 direction;
-            direction[0] = cos(vmath::radians(handler->yaw)) * cos(vmath::radians(handler->pitch));
-            direction[1] = sin(vmath::radians(handler->pitch));
-            direction[2] = sin(vmath::radians(handler->yaw)) * cos(vmath::radians(handler->pitch));
-            handler->cameraFront = vmath::normalize(direction);
+            glm::vec3 direction;
+            direction[0] = cos(glm::radians(handler->yaw)) * cos(glm::radians(handler->pitch));
+            direction[1] = sin(glm::radians(handler->pitch));
+            direction[2] = sin(glm::radians(handler->yaw)) * cos(glm::radians(handler->pitch));
+            handler->cameraFront = glm::normalize(direction);
             handler->scene.mainCamera.cameraFront = handler->cameraFront;
 
         }
@@ -125,6 +124,6 @@ public:
     GLFW::Window &window;
 
     double lastX, lastY, yaw = 0.0, pitch = 0.0;
-    vmath::vec3 cameraFront;
+    glm::vec3 cameraFront;
     bool firstMouse;
 };

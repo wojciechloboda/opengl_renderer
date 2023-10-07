@@ -5,15 +5,18 @@
 #include "model.h"
 #include "glad/glad.h"
 
+#include <glm/vec3.hpp> // glm::vec3
+#include <glm/vec4.hpp> // glm::vec4
+
 class Object
 {
 public:
     std::shared_ptr<Model> model;
-    vmath::vec3 position{0.0f, 0.0f, 0.0f};
-    vmath::vec3 scale{1.0f, 1.0f, 1.0f};
-    vmath::vec3 diffuse;
-    vmath::vec3 ambient;
-    vmath::vec3 specular;
+    glm::vec3 position{0.0f, 0.0f, 0.0f};
+    glm::vec3 scale{1.0f, 1.0f, 1.0f};
+    glm::vec3 diffuse;
+    glm::vec3 ambient;
+    glm::vec3 specular;
     float shininess = 32.0f;
     std::string name;
 
@@ -40,8 +43,8 @@ public:
     void draw() 
     {
         //temporary
-        position = vmath::vec3(position_arr[0], position_arr[1], position_arr[2]);
-        scale = vmath::vec3(scale_arr[0], scale_arr[1], scale_arr[2]);
+        position = glm::vec3(position_arr[0], position_arr[1], position_arr[2]);
+        scale = glm::vec3(scale_arr[0], scale_arr[1], scale_arr[2]);
         //
 
         if(is_texture_loaded)

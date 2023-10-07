@@ -3,19 +3,26 @@
 #include "glad/glad.h"
 #include <vmath.h>
 
+#include <glm/vec3.hpp> // glm::vec3
+#include <glm/vec4.hpp> // glm::vec4
+#include <glm/mat4x4.hpp> // glm::mat4
+#include <glm/ext/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale
+#include <glm/ext/matrix_clip_space.hpp> // glm::perspective
+#include <glm/ext/scalar_constants.hpp> // glm::pi
+
 class Camera 
 {
 public:
-    vmath::vec3 position;
-    vmath::vec3 cameraFront;
-    vmath::vec3 upDirection;
+    glm::vec3 position;
+    glm::vec3 cameraFront;
+    glm::vec3 upDirection;
 
     float yaw;
     float pitch;
 
-    Camera(vmath::vec3 pos)
+    Camera(glm::vec3 pos)
         : position{pos}, 
-          cameraFront{vmath::vec3(0.0, 0.0, 1.0)},
-          upDirection{vmath::vec3(0.0, 1.0, 0.0)} {}
+          cameraFront{glm::vec3(0.0, 0.0, 1.0)},
+          upDirection{glm::vec3(0.0, 1.0, 0.0)} {}
 private:
 };

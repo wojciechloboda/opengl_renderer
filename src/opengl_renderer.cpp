@@ -47,8 +47,8 @@ int main()
     scene.objects.push_back(sphere1);
     scene.objects.push_back(sphere2);
 
-    scene.mainCamera = vmath::vec3(0.0, 0.0, -1.0);
-    scene.pointLightPosition = vmath::vec3(0.7f, 0.0f, 0.0f);
+    scene.mainCamera = glm::vec3(0.0, 0.0, -1.0);
+    scene.pointLightPosition = glm::vec3(0.7f, 0.0f, 0.0f);
     //
 
     InputHandler inputHandler(window, scene);

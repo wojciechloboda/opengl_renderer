@@ -19,7 +19,8 @@ target_include_directories(opengl_renderer PUBLIC extern/glfw/include
                                                   extern/stb
                                                   extern/obj
                                                   extern/imgui
-                                                  extern/imgui/backends)
+                                                  extern/imgui/backends
+                                                  extern/glm)
 
 set_target_properties(opengl_renderer PROPERTIES RUNTIME_OUTPUT_DIRECTORY bin)
 
