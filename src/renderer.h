@@ -13,14 +13,11 @@
 class Renderer 
 {
 public:
-    Renderer() 
+    void render(Scene *scene, int width, int height)
     {
-        float aspect = (float)1280 / (float)720;
-        proj_matrix = vmath::perspective(50.0f, aspect, 0.1f, 1000.0f);  
-    }
+        float aspect = (float)width / (float)height;
+        vmath::mat4 proj_matrix = vmath::perspective(50.0f, aspect, 0.1f, 1000.0f);
 
-    void render(Scene *scene)
-    {
         static const GLfloat red[] = { 0.05f, 0.05f, 0.05f, 1.0f };
         vmath::mat4 view_matrix = vmath::lookat(
            scene->mainCamera.position, 
@@ -42,7 +39,7 @@ public:
         rendering_program->setUniform("view_position", scene->mainCamera.position);
         //
 
-        for(const auto& object : scene->objects)
+        for(auto& object : scene->objects)
         {
             rendering_program->setUniform("model", 
                 model_matrix(object.position, object.scale));
@@ -85,14 +82,7 @@ public:
         cube->scale = vmath::vec3(0.05f, 0.05f, 0.05f);
     }
 
-    void onResize(int width, int height) 
-    {
-        float aspect = (float)width / (float)height;
-        proj_matrix = vmath::perspective(50.0f, aspect, 0.1f, 1000.0f);
-    }
-
 private:
-    vmath::mat4 proj_matrix;
     float currentFrame;
     float lastFrame;
     float deltaTime;

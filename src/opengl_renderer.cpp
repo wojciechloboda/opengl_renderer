@@ -6,19 +6,32 @@
 #include "renderer.h"
 #include "scene.h"
 #include "window.h"
+
+
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
+
 #include "inputHandler.h"
+#include "framebuffer.h"
+#include "ui.h"
+
 
 int main()
 {
-    int height = 1280, width = 720;
-    GLFW::Window window(height, width);
+    int width = 1280, height = 720;
+    int window_width = 2000, window_height = 1000;
+    //GLFW::Window window(height, width);
+
+    GLFW::Window window(window_width, window_height);
     window.makeContextCurrent();
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
         fprintf(stderr, "Failed to initialize GLAD\n");
         return 1;
     }  
-    glViewport(0, 0, height, width);
+    glViewport(0, 0, width, height);
+
 
     Renderer renderer;
     renderer.init();
@@ -29,11 +42,7 @@ int main()
     auto cubeModel = std::make_shared<Model>("resources/meshes/cube.obj");
     Object sphere1(sphereModel);
     Object sphere2(sphereModel);
-    sphere1.position = vmath::vec3(-0.3f, -0.0f, 0.0f);
-    sphere1.scale = vmath::vec3(0.01f, 0.01f, 0.01f);
     sphere1.loadTexture(sphereTexture);
-    sphere2.position = vmath::vec3(1.3f, -0.0f, 0.0f);
-    sphere2.scale = vmath::vec3(0.01f, 0.01f, 0.01f);
     sphere2.loadTexture(sphereTexture);
     scene.objects.push_back(sphere1);
     scene.objects.push_back(sphere2);
@@ -42,18 +51,51 @@ int main()
     scene.pointLightPosition = vmath::vec3(0.7f, 0.0f, 0.0f);
     //
 
-    InputHandler inputHandler(window, renderer, scene);
+    InputHandler inputHandler(window, scene);
 
+    // Setup Dear ImGui context
+    const char* glsl_version = "#version 130";
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+
+    // Setup Dear ImGui style
+    ImGui::StyleColorsDark();
+    //ImGui::StyleColorsLight();
+
+    // Setup Platform/Renderer backends
+    ImGui_ImplGlfw_InitForOpenGL(window.get(), true);
+    ImGui_ImplOpenGL3_Init(glsl_version);
+
+    bool show_demo_window = true;
+    bool show_another_window = false;
+    ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+
+    
+    Framebuffer framebuffer(width, height);
+    UI ui;
 
     double currentFrame, lastFrame = glfwGetTime(), deltaTime;
+    const ImGuiViewport* main_viewport = ImGui::GetMainViewport();
+
+    ///////////////////////////////////
+
     while(!window.shouldClose())
     {
+        framebuffer.bind();
+
         currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
         inputHandler.processInput(deltaTime);
-        renderer.render(&scene);
+        renderer.render(&scene, width, height);
+
+
+        ui.renderFrame(scene, framebuffer, width, height, 
+            window_width, window_height, window, inputHandler);
 
         window.swapBuffers();
         glfwPollEvents();    

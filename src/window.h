@@ -2,6 +2,7 @@
 
 #include "GLFW/glfw3.h"
 #include "renderer.h"
+#include "imgui_impl_glfw.h"
 
 
 namespace GLFW
@@ -10,7 +11,7 @@ namespace GLFW
 class Window
 {
 public:
-    Window(int height, int width)
+    Window(int width, int height)
     {
         if(!glfwInit())
         {
@@ -21,14 +22,15 @@ public:
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-        window = glfwCreateWindow(height, width, "Renderer", NULL, NULL);
+        window = glfwCreateWindow(width, height, "Renderer", NULL, NULL);
 
         if (window == NULL)
         {
             fprintf(stderr, "Failed to create GLFW window\n");
         }
 
-        glfwSetInputMode(window, GLFW_CURSOR,  GLFW_CURSOR_DISABLED);
+        //glfwSetInputMode(window, GLFW_CURSOR,  GLFW_CURSOR_DISABLED);
+        //ImGui_ImplGlfw_InitForOpenGL(, true);
     }
 
     void makeContextCurrent()
@@ -84,6 +86,21 @@ public:
     void setShouldClose()
     {
         glfwSetWindowShouldClose(window, true);
+    }
+
+    void disableCursor()
+    {
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    }
+
+    void activateCursor()
+    {
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+    }
+
+    GLFWwindow* get()
+    {
+        return window;
     }
 
 private:
