@@ -8,7 +8,7 @@ right now capable of loading meshes and textures, adding objects to scene and re
 
 
 Used libraries:
-glfw, glad, OBJ_loader, stb_image.
+glfw, glad, OBJ_loader, stb_image, glm.
 
 
 
