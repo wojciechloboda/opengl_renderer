@@ -11,6 +11,7 @@
 #include "model.h"
 
 
+
 #include <glm/vec3.hpp> // glm::vec3
 #include <glm/vec4.hpp> // glm::vec4
 #include <glm/mat4x4.hpp> // glm::mat4
@@ -104,5 +105,6 @@ private:
     {
         glm::mat4 trans = glm::mat4(1.0f);
         return glm::translate(glm::scale(trans, scale), position);
+        
     }
 };

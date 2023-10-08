@@ -2,7 +2,12 @@
 cmake_minimum_required (VERSION 2.6)
 project (opengl_renderer)
 
-add_executable(opengl_renderer src/opengl_renderer.cpp)
+set(sources src/opengl_renderer.cpp
+            src/framebuffer.cpp
+            src/camera.cpp
+            src/glslprogram.cpp)
+
+add_executable(opengl_renderer ${sources})
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)

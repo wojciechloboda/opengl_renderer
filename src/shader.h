@@ -1,24 +1,8 @@
 #pragma once
 
 #include "glad/glad.h"
+#include <vector>
 #include <fstream>
-
-bool CompileStatus( GLuint shader )
-{
-    GLint status = GL_TRUE;
-    glGetShaderiv( shader, GL_COMPILE_STATUS, &status );
-    if (status == GL_FALSE)
-    {
-        GLint logLen;
-        glGetShaderiv( shader, GL_INFO_LOG_LENGTH, &logLen );
-        std::vector< char >log( logLen );
-        GLsizei written;
-        glGetShaderInfoLog( shader, logLen, &written, log.data() );
-        fprintf(stderr, "compile error\n");
-        fprintf(stderr, log.data());
-    }
-    return status != GL_FALSE;
-}
 
 class Shader
 {
@@ -53,7 +37,7 @@ public:
         glCompileShader(shaderId);
         if(glGetError() != 0)
         {
-            CompileStatus(shaderId);
+            compileStatus(shaderId);
         }
     }
 
@@ -65,6 +49,23 @@ public:
     ~Shader()
     {
         glDeleteShader(shaderId);
+    }
+
+    bool compileStatus( GLuint shader )
+    {
+        GLint status = GL_TRUE;
+        glGetShaderiv( shader, GL_COMPILE_STATUS, &status );
+        if (status == GL_FALSE)
+        {
+            GLint logLen;
+            glGetShaderiv( shader, GL_INFO_LOG_LENGTH, &logLen );
+            std::vector< char >log( logLen );
+            GLsizei written;
+            glGetShaderInfoLog( shader, logLen, &written, log.data() );
+            fprintf(stderr, "compile error\n");
+            fprintf(stderr, log.data());
+        }
+        return status != GL_FALSE;
     }
 
 private:

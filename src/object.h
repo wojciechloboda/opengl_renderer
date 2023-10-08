@@ -4,6 +4,7 @@
 #include "texture.h"
 #include "model.h"
 #include "glad/glad.h"
+#include <memory>
 
 #include <glm/vec3.hpp> // glm::vec3
 #include <glm/vec4.hpp> // glm::vec4
