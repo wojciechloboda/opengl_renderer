@@ -32,7 +32,7 @@ public:
     }
 
 
-    void processInput(double deltaTime)
+    void processInput(double deltaTime) //powinien dostawac scene
     {
         float cameraSpeed = 2.5f * deltaTime;
         if (activeInput)

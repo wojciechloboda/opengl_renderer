@@ -15,7 +15,7 @@ public:
 
     void renderFrame(Scene &scene, Framebuffer &framebuffer, int width, 
                         int height, int window_width, int window_height,
-                        GLFW::Window &window, InputHandler &inputHandler)
+                        MainWindow &window)
     {
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
@@ -55,7 +55,8 @@ public:
             if (ImGui::IsWindowFocused())
             {
                 window.disableCursor();
-                inputHandler.activeInput = true;
+                //inputHandler.activeInput = true;
+                window.setInputActive();
             }
             ImGui::EndChild();
         }

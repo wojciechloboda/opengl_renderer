@@ -7,6 +7,7 @@
 #include "scene.h"
 #include "window.h"
 
+#include "main_window.h"
 
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
@@ -21,17 +22,7 @@ int main()
 {
     int width = 1280, height = 720;
     int window_width = 2000, window_height = 1000;
-    //GLFW::Window window(height, width);
-
-    GLFW::Window window(window_width, window_height);
-    window.makeContextCurrent();
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-    {
-        fprintf(stderr, "Failed to initialize GLAD\n");
-        return 1;
-    }  
-    glViewport(0, 0, width, height);
-
+    MainWindow &window = MainWindow::Instance(window_width, window_height);
 
     Renderer renderer;
     renderer.init();
@@ -49,38 +40,13 @@ int main()
 
     scene.mainCamera = glm::vec3(0.0, 0.0, -1.0);
     scene.pointLightPosition = glm::vec3(0.7f, 0.0f, 0.0f);
-    //
 
-    InputHandler inputHandler(window, scene);
-
-    // Setup Dear ImGui context
-    const char* glsl_version = "#version 130";
-    IMGUI_CHECKVERSION();
-    ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-
-    // Setup Dear ImGui style
-    ImGui::StyleColorsDark();
-    //ImGui::StyleColorsLight();
-
-    // Setup Platform/Renderer backends
-    ImGui_ImplGlfw_InitForOpenGL(window.get(), true);
-    ImGui_ImplOpenGL3_Init(glsl_version);
-
-    bool show_demo_window = true;
-    bool show_another_window = false;
-    ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-
+    window.setScene(&scene);
     
     Framebuffer framebuffer(width, height);
     UI ui;
 
     double currentFrame, lastFrame = glfwGetTime(), deltaTime;
-    const ImGuiViewport* main_viewport = ImGui::GetMainViewport();
-
-    ///////////////////////////////////
 
     while(!window.shouldClose())
     {
@@ -90,12 +56,11 @@ int main()
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
-        inputHandler.processInput(deltaTime);
+        window.processInput(deltaTime);
         renderer.render(&scene, width, height);
 
-
         ui.renderFrame(scene, framebuffer, width, height, 
-            window_width, window_height, window, inputHandler);
+            window_width, window_height, window);
 
         window.swapBuffers();
         glfwPollEvents();    
